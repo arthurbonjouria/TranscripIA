@@ -260,7 +260,7 @@ export async function render(root, params, ctx) {
       if (isActiveJob(job.status)) {
         jobTimer = setTimeout(tick, 2000);
         const tr = job.steps.find((s) => s.key === 'transcribe');
-        const mark = tr && tr.status === 'running' ? tr.message : null;
+        const mark = tr && ['running', 'done'].includes(tr.status) ? `${tr.status}|${tr.status === 'running' ? tr.message : ''}` : null;
         if (mark && mark !== ws._lastChunkMsg) {
           const first = ws._lastChunkMsg === undefined;
           ws._lastChunkMsg = mark;
