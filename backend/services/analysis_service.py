@@ -162,7 +162,16 @@ def run_blocks(audio: dict, progress: Progress, should_stop: Stop, force: bool =
         messages = prompt.render(language=lang, block_index=i + 1, block_count=len(blocks),
                                  start=fmt_time(block["start"]), end=fmt_time(block["end"]),
                                  title=audio["title"], transcript=_block_transcript(block))
-        raw = ollama_service.chat_json(messages, should_stop=should_stop, max_tokens=1600)
+        # progression continue pendant la rédaction (≈ 700 tokens attendus par passage)
+        tokens = [0]
+        label = f"Analyse du passage {i + 1} sur {len(blocks)} ({fmt_time(block['start'])})"
+
+        def on_token(_t, _i=i):
+            tokens[0] += 1
+            if tokens[0] % 20 == 0:
+                progress((_i + min(0.95, tokens[0] / 700)) / len(blocks) * 100, label)
+
+        raw = ollama_service.chat_json(messages, should_stop=should_stop, max_tokens=1600, on_token=on_token)
         done.append(normalize_block_result(block, raw, i))
         content = {"block_minutes": settings.get("analysis.block_minutes"), "blocks": done,
                    "complete": len(done) >= len(blocks)}

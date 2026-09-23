@@ -73,7 +73,8 @@ def check_gpu() -> dict:
     if cuda["available"]:
         return _item("gpu", "GPU", "ok", f"{name} — utilisable par Whisper (CUDA)")
     return _item("gpu", "GPU", "warning", f"{name} — non utilisable par Whisper : {cuda['reason'][:160]}",
-                 "Mettez à jour le pilote NVIDIA (version 525 ou plus) pour accélérer la transcription. "
+                 "Pour une transcription quasi instantanée : mettez à jour le pilote NVIDIA (version 525 ou plus), "
+                 "puis « python -m pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.* » et redémarrez. "
                  "En attendant, Whisper utilise le CPU.")
 
 

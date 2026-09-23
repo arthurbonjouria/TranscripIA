@@ -79,9 +79,10 @@ class JobContext:
     def progress(self, key: str, pct: float, message: str = "") -> None:
         st = self.step(key)
         st["progress"] = round(max(0.0, min(100.0, pct)), 1)
+        changed = bool(message) and message != st.get("message")
         if message:
             st["message"] = message
-        self._save(message=message or None)
+        self._save(message=message or None, force=changed)
 
     def end_step(self, key: str, status: str = "done", message: str = "") -> None:
         st = self.step(key)

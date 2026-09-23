@@ -27,6 +27,26 @@ PROFILES = {
     "precis": {"model": "small", "beam": 5, "batched": False, "label": "Précis"},
 }
 
+def _register_cuda_dlls() -> None:
+    """Rend visibles les DLL CUDA 12 / cuDNN 9 installées par pip (nvidia-cublas-cu12, nvidia-cudnn-cu12)."""
+    import os
+    import site
+    import sys
+
+    if os.name != "nt":
+        return
+    roots = [Path(p) for p in (site.getsitepackages() + [site.getusersitepackages()])] + [Path(sys.prefix) / "Lib" / "site-packages"]
+    for root in roots:
+        for bin_dir in (root / "nvidia").glob("*/bin"):
+            try:
+                os.add_dll_directory(str(bin_dir))
+                os.environ["PATH"] = f"{bin_dir}{os.pathsep}{os.environ.get('PATH', '')}"
+            except OSError:
+                pass
+
+
+_register_cuda_dlls()
+
 _lock = threading.Lock()
 _model = None
 _model_key: tuple | None = None
