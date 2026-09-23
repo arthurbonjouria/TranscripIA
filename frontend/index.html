@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BONJOUR IA — Audio Intelligence Workspace</title>
+  <meta name="description" content="Transformez vos enregistrements en synthèses, chapitres, décisions et actions. Traitement 100 % local.">
+  <link rel="icon" type="image/png" href="/static/img/favicon.png">
+  <link rel="stylesheet" href="/static/fonts/fonts.css">
+  <link rel="stylesheet" href="/static/css/tokens.css">
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="stylesheet" href="/static/css/components.css">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <link rel="stylesheet" href="/static/css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
+  <div class="app" id="app">
+    <header class="topbar">
+      <button class="btn btn-icon menu-toggle" id="menu-toggle" type="button" aria-label="Menu"></button>
+      <a class="brand" href="#/" aria-label="BONJOUR IA — accueil">
+        <img src="/static/img/logo.svg" alt="BONJOUR IA" height="34">
+        <span class="brand-product"><strong>Audio Intelligence</strong>Workspace</span>
+      </a>
+      <div class="topbar-center">
+        <form class="search-input topbar-search" id="global-search" role="search">
+          <label class="sr-only" for="global-q">Rechercher dans tous les audios</label>
+          <input class="input" id="global-q" type="search" placeholder="Rechercher dans tous vos audios…" autocomplete="off">
+        </form>
+      </div>
+      <div class="topbar-right">
+        <span class="local-badge" title="Vos fichiers audio et vos données sont traités localement sur cette machine."></span>
+        <a class="btn btn-icon jobs-indicator" id="jobs-indicator" href="#/jobs" title="Traitements en cours" aria-label="Traitements en cours"></a>
+        <a class="btn btn-primary" href="#/import" id="import-cta"></a>
+      </div>
+    </header>
+    <nav class="sidebar" id="sidebar" aria-label="Navigation principale"></nav>
+    <main class="main" id="main" tabindex="-1"></main>
+  </div>
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

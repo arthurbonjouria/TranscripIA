@@ -1,0 +1,169 @@
+/* ==========================================================================
+   BONJOUR IA — Design System · Tokens
+   Valeurs relevées sur bonjouria.fr (styles calculés) :
+   rose #E83967 · texte #2D2D2D · pampas #F4F3EE · cloudy #B1ADA1 · rose doux #F2D5D0
+   Poppins (titres légers 400, surtitres 700 capitales espacées) · Lora (accents éditoriaux)
+   Boutons pilule (rayon 30px), cartes à bordure fine sans ombre.
+   ========================================================================== */
+
+:root {
+  /* --- Couleurs de marque */
+  --color-primary: #E83967;
+  --color-primary-dark: #C22A54;
+  --color-primary-darker: #9E2045;
+  --color-primary-light: #F2D5D0;
+  --color-primary-50: #FCEFF2;
+  --color-primary-alpha: rgba(232, 57, 103, 0.08);
+  --color-secondary: #2D2D2D;
+  --color-accent: #B1ADA1;
+  --color-accent-light: #E4E1D9;
+
+  /* --- Surfaces */
+  --color-background: #F4F3EE;
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #FAF9F6;
+  --color-surface-sunken: #EEECE5;
+  --color-overlay: rgba(45, 45, 45, 0.38);
+
+  /* --- Texte (contrastes AA vérifiés sur blanc et pampas) */
+  --color-text: #2D2D2D;
+  --color-text-muted: #66625A;
+  --color-text-subtle: #8A867C;
+  --color-text-inverse: #FFFFFF;
+
+  /* --- Bordures */
+  --color-border: #E3E0D8;
+  --color-border-strong: #CFCBC1;
+  --color-border-focus: var(--color-primary);
+
+  /* --- États (tons sourds, cohérents avec la charte) */
+  --color-success: #2E7D55;
+  --color-success-bg: #E6F2EB;
+  --color-warning: #B7791F;
+  --color-warning-bg: #FBF1E0;
+  --color-danger: #C0392B;
+  --color-danger-bg: #FAE7E4;
+  --color-info: #3B6A8F;
+  --color-info-bg: #E6EEF5;
+
+  /* --- Catégories d'analyse */
+  --cat-decision: #2E7D55;
+  --cat-action: #E83967;
+  --cat-question: #3B6A8F;
+  --cat-risk: #C0392B;
+  --cat-idea: #B7791F;
+  --cat-info: #66625A;
+  --cat-quote: #7A5C8E;
+  --cat-figure: #2D2D2D;
+  --cat-bookmark: #C8A24A;
+  --cat-annotation: #6B7A8F;
+  --cat-clip: #9E2045;
+
+  /* --- Typographie */
+  --font-sans: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Cascadia Mono', Consolas, 'Courier New', monospace;
+
+  --fs-h1: 2.5rem;      /* 40px */
+  --fs-h2: 1.75rem;     /* 28px */
+  --fs-h3: 1.25rem;     /* 20px */
+  --fs-h4: 1rem;        /* 16px */
+  --fs-body: 0.9375rem; /* 15px */
+  --fs-reading: 1.0625rem; /* 17px — lecture de transcription */
+  --fs-small: 0.875rem; /* 14px */
+  --fs-caption: 0.8125rem; /* 13px */
+  --fs-label: 0.6875rem;   /* 11px — surtitres */
+  --fs-button: 0.875rem;
+  --fs-metadata: 0.8125rem;
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-body: 1.65;
+  --lh-reading: 1.8;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  --ls-label: 0.16em;
+
+  /* --- Espacements (base 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* --- Rayons */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Ombres (discrètes : le site n'en utilise quasiment pas) */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px rgba(45, 45, 45, 0.06);
+  --shadow-md: 0 6px 24px rgba(45, 45, 45, 0.08);
+  --shadow-lg: 0 18px 48px rgba(45, 45, 45, 0.14);
+  --shadow-focus: 0 0 0 3px rgba(232, 57, 103, 0.22);
+
+  /* --- Bordures */
+  --border-width: 1px;
+  --border: var(--border-width) solid var(--color-border);
+  --border-strong: var(--border-width) solid var(--color-border-strong);
+
+  /* --- Transitions */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --transition-fast: 120ms var(--ease);
+  --transition: 200ms var(--ease);
+  --transition-slow: 360ms var(--ease);
+
+  /* --- Mise en page */
+  --topbar-h: 64px;
+  --sidebar-w: 248px;
+  --content-max: 1360px;
+  --z-sticky: 20;
+  --z-dropdown: 40;
+  --z-modal: 60;
+  --z-toast: 80;
+}
+
+/* --------------------------------------------------------------------------
+   Mode sombre (préparé, non activé par défaut) — chaleureux, sans violet ni néon.
+   Activation : <html data-theme="dark">
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --color-primary: #F0547E;
+  --color-primary-dark: #E83967;
+  --color-primary-light: #4A2A31;
+  --color-primary-50: #33242A;
+  --color-primary-alpha: rgba(240, 84, 126, 0.12);
+  --color-secondary: #EDEBE6;
+  --color-accent: #8C887E;
+  --color-accent-light: #3A3834;
+  --color-background: #1F1E1C;
+  --color-surface: #292826;
+  --color-surface-alt: #2F2E2B;
+  --color-surface-sunken: #1A1917;
+  --color-overlay: rgba(0, 0, 0, 0.55);
+  --color-text: #EDEBE6;
+  --color-text-muted: #B5B1A8;
+  --color-text-subtle: #8F8B82;
+  --color-border: #3B3935;
+  --color-border-strong: #4B4843;
+  --color-success-bg: #1E3328;
+  --color-warning-bg: #3A2F1C;
+  --color-danger-bg: #3D2220;
+  --color-info-bg: #1F2D39;
+  --cat-figure: #EDEBE6;
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.45);
+}

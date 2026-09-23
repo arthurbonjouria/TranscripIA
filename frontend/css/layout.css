@@ -1,0 +1,92 @@
+/* BONJOUR IA — structure de l'application */
+
+.app { display: grid; grid-template-columns: var(--sidebar-w) 1fr; grid-template-rows: var(--topbar-h) 1fr; min-height: 100vh; }
+
+/* ---------------------------------------------------------------- Barre supérieure */
+.topbar {
+  grid-column: 1 / -1; position: sticky; top: 0; z-index: var(--z-sticky);
+  display: flex; align-items: center; gap: var(--space-6); padding: 0 var(--space-6);
+  background: var(--color-surface); border-bottom: var(--border);
+}
+.brand { display: flex; align-items: center; gap: var(--space-3); width: calc(var(--sidebar-w) - var(--space-6)); flex-shrink: 0; text-decoration: none; color: var(--color-text); }
+.brand img { height: 42px; width: auto; }
+.brand .brand-product { padding-left: var(--space-3); border-left: var(--border); font-size: 0.72rem; line-height: 1.25; color: var(--color-text-muted); font-weight: var(--fw-medium); }
+.brand .brand-product strong { display: block; color: var(--color-text); font-weight: var(--fw-semibold); letter-spacing: 0.02em; }
+.topbar-center { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--space-4); }
+.topbar-search { width: min(520px, 100%); }
+.topbar-search .input { background: var(--color-background); border-color: transparent; }
+.topbar-search .input:focus { background: var(--color-surface); }
+.topbar-right { display: flex; align-items: center; gap: var(--space-3); }
+.local-badge {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 14px;
+  border-radius: var(--radius-pill); background: var(--color-success-bg); color: var(--color-success);
+  font-size: 0.72rem; font-weight: var(--fw-bold); letter-spacing: 0.08em; text-transform: uppercase; cursor: default;
+}
+.local-badge svg { width: 14px; height: 14px; }
+.jobs-indicator { position: relative; }
+.jobs-indicator .badge-count { position: absolute; top: 2px; right: 2px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: var(--color-primary); color: #fff; font-size: 0.65rem; font-weight: 700; display: grid; place-items: center; }
+
+/* ---------------------------------------------------------------- Barre latérale */
+.sidebar {
+  position: sticky; top: var(--topbar-h); height: calc(100vh - var(--topbar-h)); overflow-y: auto;
+  display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-5) var(--space-3);
+  background: var(--color-surface); border-right: var(--border);
+}
+.nav-section { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--space-4); }
+.nav-title { padding: var(--space-2) var(--space-3); font-size: var(--fs-label); font-weight: var(--fw-bold); letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--color-text-subtle); }
+.nav-link {
+  position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 38px; padding: 7px var(--space-3);
+  border-radius: var(--radius-md); color: var(--color-text-muted); font-size: var(--fs-small); font-weight: var(--fw-medium);
+  text-decoration: none; transition: background var(--transition-fast), color var(--transition-fast);
+}
+.nav-link svg { width: 18px; height: 18px; }
+.nav-link:hover { background: var(--color-surface-sunken); color: var(--color-text); }
+.nav-link.is-active { background: var(--color-primary-50); color: var(--color-primary-darker); font-weight: var(--fw-semibold); }
+.nav-link.is-active svg { color: var(--color-primary); }
+.nav-link .nav-count { margin-left: auto; font-size: 0.72rem; color: var(--color-text-subtle); font-variant-numeric: tabular-nums; }
+.nav-link.is-active .nav-count { color: var(--color-primary-dark); }
+.nav-back { color: var(--color-text); font-weight: var(--fw-semibold); margin-bottom: var(--space-3); }
+.sidebar-foot { margin-top: auto; padding: var(--space-4) var(--space-3) var(--space-2); border-top: var(--border); }
+.privacy-note { display: flex; gap: var(--space-2); font-size: 0.75rem; line-height: 1.5; color: var(--color-text-muted); }
+.privacy-note svg { width: 16px; height: 16px; color: var(--color-success); margin-top: 2px; }
+.privacy-note strong { display: block; color: var(--color-text); font-size: var(--fs-label); letter-spacing: var(--ls-label); text-transform: uppercase; }
+
+/* ---------------------------------------------------------------- Zone principale */
+.main { min-width: 0; }
+.page { max-width: var(--content-max); margin: 0 auto; padding: var(--space-8) var(--space-8) var(--space-16); animation: fade 200ms var(--ease); }
+.page-wide { max-width: none; }
+.page-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-8); }
+.page-head .lede { margin-top: var(--space-2); max-width: 680px; color: var(--color-text-muted); font-size: 1rem; }
+.page-head h1 { font-size: 2.25rem; }
+
+.grid { display: grid; gap: var(--space-6); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-main-side { grid-template-columns: minmax(0, 1fr) 360px; }
+
+/* ---------------------------------------------------------------- Responsive : laptop / tablette */
+@media (max-width: 1280px) {
+  :root { --sidebar-w: 220px; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-main-side { grid-template-columns: minmax(0, 1fr) 320px; }
+  .page { padding: var(--space-6) var(--space-6) var(--space-12); }
+}
+@media (max-width: 1024px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .app.nav-open .sidebar { display: flex; position: fixed; left: 0; top: var(--topbar-h); z-index: var(--z-dropdown); width: 280px; box-shadow: var(--shadow-lg); }
+  .brand { width: auto; }
+  .brand .brand-product { display: none; }
+  .menu-toggle { display: inline-flex !important; }
+  .grid-3, .grid-main-side { grid-template-columns: 1fr; }
+  .local-badge span { display: none; }
+}
+@media (max-width: 720px) {
+  .grid-2, .grid-4 { grid-template-columns: 1fr; }
+  .topbar { gap: var(--space-3); padding: 0 var(--space-4); }
+  .topbar-search { display: none; }
+  .page { padding: var(--space-5) var(--space-4) var(--space-10); }
+  .page-head h1 { font-size: 1.75rem; }
+}
+.menu-toggle { display: none !important; }
